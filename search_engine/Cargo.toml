@@ -1,0 +1,12 @@
+[package]
+name = "search_engine_project"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+regex = "1"
+unicode-normalization = "0.1"
+pdf-extract = "0.7"
+zip = "0.6"
+eframe = "0.27"
