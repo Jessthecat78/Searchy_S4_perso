@@ -27,7 +27,7 @@ pub fn idf(
     if let Some(list) = index.get(word) {
         let df = list.len() as f64;
         if df > 0.0 {
-            return (nb_docs as f64 / df).ln();
+            return (nb_docs as f64 / df).ln() + 1.0;
         }
     }
 

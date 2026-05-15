@@ -3,7 +3,18 @@
     "allow": [
       "Bash(cargo build *)",
       "Bash(cargo run *)",
-      "Bash(cargo check *)"
+      "Bash(cargo check *)",
+      "Bash(mkdir -p /tmp/test_searchy)",
+      "Bash(echo \"bonjour monde ceci est un test\")",
+      "Read(//tmp/**)",
+      "Bash(cargo test *)",
+      "Bash(./target/debug/search_engine_project /tmp/test_searchy \"monde\")",
+      "Bash(./target/debug/search_engine_project /tmp/test_searchy \"ceci\")",
+      "Bash(./target/debug/search_engine_project /tmp/test_searchy \"test\")",
+      "Bash(cp /tmp/test_searchy/test.txt /tmp/test_searchy_one)",
+      "Bash(mkdir -p /tmp/test_searchy_one)",
+      "Bash(cp /tmp/test_searchy/test.txt /tmp/test_searchy_one/)",
+      "Bash(./target/debug/search_engine_project /tmp/test_searchy_one \"test\")"
     ]
   }
 }

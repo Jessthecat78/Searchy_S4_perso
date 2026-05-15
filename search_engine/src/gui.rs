@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::process::Command;
 
 use eframe::egui;
 
@@ -166,7 +167,9 @@ impl eframe::App for SearchApp {
                         for (path, score) in &self.results {
                             ui.horizontal(|ui| {
                                 ui.monospace(format!("[{:.4}]", score));
-                                ui.label(path);
+                                if ui.link(path).clicked() {
+                                    let _ = Command::new("xdg-open").arg(path).spawn();
+                                }
                             });
                         }
                     });
@@ -182,7 +185,9 @@ impl eframe::App for SearchApp {
                         for (path, score) in &self.image_results {
                             ui.horizontal(|ui| {
                                 ui.monospace(format!("[{}]", score));
-                                ui.label(path);
+                                if ui.link(path).clicked() {
+                                    let _ = Command::new("xdg-open").arg(path).spawn();
+                                }
                             });
                         }
                     });
