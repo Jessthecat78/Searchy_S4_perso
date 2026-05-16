@@ -14,7 +14,8 @@
       "Bash(cp /tmp/test_searchy/test.txt /tmp/test_searchy_one)",
       "Bash(mkdir -p /tmp/test_searchy_one)",
       "Bash(cp /tmp/test_searchy/test.txt /tmp/test_searchy_one/)",
-      "Bash(./target/debug/search_engine_project /tmp/test_searchy_one \"test\")"
+      "Bash(./target/debug/search_engine_project /tmp/test_searchy_one \"test\")",
+      "Bash(xargs cat -n)"
     ]
   }
 }

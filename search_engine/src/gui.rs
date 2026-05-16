@@ -68,7 +68,6 @@ impl eframe::App for SearchApp {
                     .color(egui::Color32::from_rgb(120, 170, 250)),
             );
             ui.label("Moteur de recherche local (.txt / .pdf / .docx / .odt / .html) + images .png");
-            ui.weak("Astuce : tu peux glisser-déposer un dossier directement sur la fenêtre.");
             ui.add_space(16.0);
 
             ui.horizontal(|ui| {
@@ -76,8 +75,14 @@ impl eframe::App for SearchApp {
                 ui.add(
                     egui::TextEdit::singleline(&mut self.folder)
                         .desired_width(600.0)
-                        .hint_text("Colle ici le chemin du dossier (ou glisse-dépose)"),
+                        .hint_text("Colle ici le chemin du dossier"),
                 );
+                if ui.button("📂 Choisir dossier").clicked() {
+                    if let Some(path) = rfd::FileDialog::new().pick_folder() {
+                        self.folder = path.to_string_lossy().to_string();
+                        self.status = format!("Dossier sélectionné : {}. Clique sur Indexer.", self.folder);
+                    }
+                }
                 if ui.button("📁 Indexer").clicked() {
                     self.do_index();
                 }
@@ -311,7 +316,7 @@ fn setup_style(ctx: &egui::Context) {
 
 pub fn run() -> eframe::Result<()> {
     let options = eframe::NativeOptions {
-        viewport: egui::ViewportBuilder::default().with_inner_size([1100.0, 750.0]),
+        viewport: egui::ViewportBuilder::default().with_inner_size([1100.0, 750.0]).with_drag_and_drop(true),
         ..Default::default()
     };
     eframe::run_native(
